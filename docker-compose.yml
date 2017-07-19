@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+  acton_mysql_service:
+    container_name: acton_mysql
+    build:
+      context: .
+      dockerfile: ./docker_configs/acton_mysql/Dockerfile
+    # ports:
+    #   - 3306:3306
+
+  acton_app_service:
+      container_name: acton_app
+      build:
+        context: .
+        dockerfile: ./docker_configs/acton_app/Dockerfile
+      command: npm run dev
+      # command: bash -c "npm cache clean && npm install && npm rebuild node-sass && npm run dev"
+      ports:
+        - 3000:3000
+      links:
+        - acton_mysql_service
+      volumes:
+        - ../acton-tracker:/acton-tracker/
+      tty: true
