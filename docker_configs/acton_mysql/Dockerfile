@@ -5,5 +5,8 @@ ENV MYSQL_DATABASE trackerdev
 ENV MYSQL_USER trackerdev
 ENV MYSQL_PASSWORD trackerdev
 
-ADD ./database_dump/trackerdev.sql /docker-entrypoint-initdb.d
-ADD ./database_dump/acton.sql /docker-entrypoint-initdb.d
+# ADD ./database_dump/acton.sql /docker-entrypoint-initdb.d
+# ADD ./database_dump/trackerdev.sql /docker-entrypoint-initdb.d
+ADD ./database_dump/dump.sql /docker-entrypoint-initdb.d
+ADD ./database_dump/new_tables.sql /docker-entrypoint-initdb.d
+ADD ./database_dump/studio_setting_migration.sql /docker-entrypoint-initdb.d
